@@ -1,0 +1,11 @@
+#SERVER SETTINGS
+server:
+  port: 8080
+  zone-id: UTC
+
+#SPRING SETTINGS
+spring:
+  data:
+    mongodb:
+      uri: ${MONGO_URI}
+      auto-index-creation: true

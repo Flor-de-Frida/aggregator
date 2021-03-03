@@ -1,0 +1,32 @@
+#APP INFO
+info:
+  app:
+    name: 'aggregator'
+    description: 'API Services Aggregator'
+  default-author: 'system@flordefrida.com.br'
+
+#MONITORING
+management:
+  server.servlet.context-path: /devops
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      base-path: /devops
+      exposure:
+        include: '*'
+
+health:
+  config:
+    enabled: true
+
+#SPRING CLOUD CONFIG
+spring:
+  cloud:
+    config:
+      enabled: false
+    discovery:
+      enabled: false
+  jackson:
+    default-property-inclusion: non_null
