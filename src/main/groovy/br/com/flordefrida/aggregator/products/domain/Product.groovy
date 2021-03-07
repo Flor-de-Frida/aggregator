@@ -69,4 +69,6 @@ class Product {
 
     @NotNull(message = 'invalid-availability')
     Boolean available
+
+    List<String> images
 }

@@ -21,15 +21,18 @@ class ProductsService {
     private final ProductsRepository repository
     private final ProductsValidationService productsValidatorService
     private final ProductsInfoService productsInfoService
+    private final ProductsImageService productsImageService
 
     ProductsService(
         final ProductsRepository repository,
         final ProductsValidationService productsValidatorService,
-        final ProductsInfoService productsInfoService
+        final ProductsInfoService productsInfoService,
+        final ProductsImageService productsImageService
     ) {
         this.repository = repository
         this.productsValidatorService = productsValidatorService
         this.productsInfoService = productsInfoService
+        this.productsImageService = productsImageService
     }
 
     Mono<Product> createNewProduct(final Product productNotValidated) {
@@ -58,6 +61,7 @@ class ProductsService {
         return this.repository
             .deleteBySkuAndOrganizationSlugName(sku, organizationSlugName)
             .switchIfEmpty(Mono.error(new ProductWithSkuNotFoundException(sku, organizationSlugName)))
+            .map(this.productsImageService.&deleteAllProductImages)
     }
 
     Mono<Product> findBySkuAndOrganizationSlugName(final String sku, final String organizationSlugName) {

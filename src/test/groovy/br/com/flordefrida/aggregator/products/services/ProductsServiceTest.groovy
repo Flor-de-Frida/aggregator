@@ -1,14 +1,15 @@
 package br.com.flordefrida.aggregator.products.services
 
-import br.com.flordefrida.aggregator.products.services.ProductsService
 import br.com.flordefrida.aggregator.products.ProductsFixturesBaseTests
 import br.com.flordefrida.aggregator.products.domain.Product
 import br.com.flordefrida.aggregator.products.errors.invalid.InvalidProductException
 import br.com.flordefrida.aggregator.products.repositories.ProductsRepository
 import br.com.flordefrida.aggregator.utils.web.request.PageRequest
 import br.com.six2six.fixturefactory.Fixture
+import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+import reactor.core.publisher.Mono
 import reactor.test.StepVerifier
 
 import java.time.LocalDateTime
@@ -23,6 +24,9 @@ class ProductsServiceTest extends ProductsFixturesBaseTests {
 
     @Value('${info.default-author}')
     String defaultAuthor
+
+    @SpringBean
+    ProductsImageService imageService = Mock(ProductsImageService)
 
     private Product existingProduct
 
@@ -223,6 +227,9 @@ class ProductsServiceTest extends ProductsFixturesBaseTests {
         given:
             def sku = 'FDF123'
             def organizationSlugName = 'flor-de-frida'
+            this.imageService.deleteAllProductImages(_ as Product) >> { Product product ->
+                return product
+            }
 
         when:
             def delete = this.service.deleteProduct(sku, organizationSlugName)

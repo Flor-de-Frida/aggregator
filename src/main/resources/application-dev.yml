@@ -9,3 +9,6 @@ spring:
     mongodb:
       uri: 'mongodb://dev_mongo:dev_password@localhost:27170/aggregator'
       auto-index-creation: true
+
+#CLOUDINARY_SETTINGS
+products-images-location: dev/images

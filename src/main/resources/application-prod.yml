@@ -9,3 +9,6 @@ spring:
     mongodb:
       uri: ${MONGO_URI}
       auto-index-creation: true
+
+#CLOUDINARY_SETTINGS
+products-images-location: images
