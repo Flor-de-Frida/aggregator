@@ -71,4 +71,6 @@ class Product {
     Boolean available
 
     List<String> images
+
+    Map<String, Object> properties
 }

@@ -43,7 +43,10 @@ docker run -p 8080:8080 -it --rm --name flor-de-frida-aggregator flor-de-frida/a
               "brandSlugName": "product-brand",
               "description": "Product Description",
               "availableOnDemand": true,
-              "available": true
+              "available": true,
+              "properties": {
+                  "colors": "brown;yellow"
+              }
           }
           ```
         - Success Response Blueprint:
@@ -68,7 +71,10 @@ docker run -p 8080:8080 -it --rm --name flor-de-frida-aggregator flor-de-frida/a
                   "brandSlugName": "product-brand",
                   "description": "Product Description",
                   "availableOnDemand": true,
-                  "available": true
+                  "available": true,
+                  "properties": {
+                      "colors": "brown;yellow"
+                  }
               }
           }
           ```
@@ -119,7 +125,10 @@ docker run -p 8080:8080 -it --rm --name flor-de-frida-aggregator flor-de-frida/a
                   "images": [
                     "https://`<secured-cloudinary-url>`/`<organization-name>`/`<sku>`/`<image1-name>.jpg`",
                     "https://`<secured-cloudinary-url>`/`<organization-name>`/`<sku>`/`<image2-name>.jpg`"
-                  ]
+                  ],
+                  "properties": {
+                      "colors": "brown;yellow"
+                  }
               }
           }
           ```
