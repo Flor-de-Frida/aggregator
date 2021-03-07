@@ -217,61 +217,61 @@ docker run -p 8080:8080 -it --rm --name flor-de-frida-aggregator flor-de-frida/a
                   "total": 1
               }
               ```
-      - Upload Product Image:
-          - Request: `PUT /products/images/{sku}`  --headers = 'x-organization' --form-data image=(Image File)
-              - Response Blueprint:
-                  ```json5
-                  {
-                      "status": 200,
-                      "message": "product-image-uploaded",
-                      "result": {
-                          "sku": "F12345",
-                          "name": "Product Name",
-                          "slugName": "product-slug-name",
-                          "gtin": "GTIN-F12345",
-                          "organizationSlugName": "product-organization-slug-name",
-                          ...,
-                          "images": [
-                            "https://`<secured-cloudinary-url>`/`<organization-name>`/`<sku>`/`<image1-name>.jpg`",
-                            "https://`<secured-cloudinary-url>`/`<organization-name>`/`<sku>`/`<image2-name>.jpg`"
-                          ]
-                      }
+  - Upload Product Image:
+      - Request: `PUT /products/images/{sku}`  --headers = 'x-organization' --form-data image=(Image File)
+          - Response Blueprint:
+              ```json5
+              {
+                  "status": 200,
+                  "message": "product-image-uploaded",
+                  "result": {
+                      "sku": "F12345",
+                      "name": "Product Name",
+                      "slugName": "product-slug-name",
+                      "gtin": "GTIN-F12345",
+                      "organizationSlugName": "product-organization-slug-name",
+                      ...,
+                      "images": [
+                        "https://`<secured-cloudinary-url>`/`<organization-name>`/`<sku>`/`<image1-name>.jpg`",
+                        "https://`<secured-cloudinary-url>`/`<organization-name>`/`<sku>`/`<image2-name>.jpg`"
+                      ]
                   }
-                  ```
-              - Failure Response Blueprint:
-              ```json
-                  {
-                      "status": 404,
-                      "message": "Product with sku=unknown,organizationSlugName=flor-de-frida not found",
-                      "reason": "product-not-found",
-                      "reasonId": "unknown,flor-de-frida"
-                  }
+              }
               ```
-          - Request: `DELETE /products/images/{sku}/image/{imageName}`
-              - Response Blueprint:
-                  ```json5
-                  {
-                      "status": 200,
-                      "message": "product-image-deleted",
-                      "result": {
-                          "sku": "F12345",
-                          "name": "Product Name",
-                          "slugName": "product-slug-name",
-                          "gtin": "GTIN-F12345",
-                          "organizationSlugName": "product-organization-slug-name",
-                          ...,
-                          "images": [
-                            "https://`<secured-cloudinary-url>`/`<organization-name>`/`<sku>`/`<image2-name>.jpg`"
-                          ]
-                      }
+          - Failure Response Blueprint:
+          ```json
+              {
+                  "status": 404,
+                  "message": "Product with sku=unknown,organizationSlugName=flor-de-frida not found",
+                  "reason": "product-not-found",
+                  "reasonId": "unknown,flor-de-frida"
+              }
+          ```
+      - Request: `DELETE /products/images/{sku}/image/{imageName}`
+          - Response Blueprint:
+              ```json5
+              {
+                  "status": 200,
+                  "message": "product-image-deleted",
+                  "result": {
+                      "sku": "F12345",
+                      "name": "Product Name",
+                      "slugName": "product-slug-name",
+                      "gtin": "GTIN-F12345",
+                      "organizationSlugName": "product-organization-slug-name",
+                      ...,
+                      "images": [
+                        "https://`<secured-cloudinary-url>`/`<organization-name>`/`<sku>`/`<image2-name>.jpg`"
+                      ]
                   }
-                  ```
-              - Failure Response Blueprint:
-              ```json
-                  {
-                      "status": 404,
-                      "message": "Product with slugName=unknown,organizationSlugName=flor-de-frida not found",
-                      "reason": "product-not-found",
-                      "reasonId": "unknown,flor-de-frida"
-                  }
+              }
               ```
+          - Failure Response Blueprint:
+          ```json
+              {
+                  "status": 404,
+                  "message": "Product with slugName=unknown,organizationSlugName=flor-de-frida not found",
+                  "reason": "product-not-found",
+                  "reasonId": "unknown,flor-de-frida"
+              }
+          ```
